@@ -7,19 +7,25 @@
     
     <link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header>
         <nav>
-            <div class="logo">David Sánchez Isabel</div>
+            <div class="contenedor-logo">
+                <img src="img/logo.jpg" alt="Avatar" class="foto-nav">
+                <span class="logo-texto">David Sánchez Isabel</span>
+            </div>
+
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="noticias.html">Noticias</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -28,15 +34,15 @@
 
     <main>
         <section id="inicio" class="hero">
-            <div class="contenido-hero">
-                <img src="foto_orla.png" alt="foto_orla" class="foto-nav">
+            <div class="contenido-hero oculto">
+                <img src="img/foto_orla.png" alt="foto_orla" class="foto-nav-2">
                 <h1><span class="resaltado">Mi blog personal</span></h1>
-                <p>Ingeniero en Tecnologías de la Telecomunicación</p>
-                <a href="proyectos.html" class="boton">Ver mis trabajos</a>
+                <p>| Ingeniero en Tecnologías de las Telecomunicaciones |</p>
+                <a href="#proyectos" class="boton">Ver mi trabajo</a>
             </div>
         </section>
 
-        <section id="sobre-mi" class="seccion">
+        <section id="sobre-mi" class="seccion oculto">
             <h2>Sobre mí</h2>
             <div class="contenido-sobre-mi">
                 <p>Hola, bienvenido a mi página web. Soy un estudiante de Ingeniería en Tecnologías de la Telecomunicación en la Universidad Rey Juan Carlos de Madrid. Estoy proceso de creación de mi página web profesional.</p>
@@ -46,25 +52,65 @@
             </div>
         </section>
 
-        <section id="contacto" class="seccion">
+        <section id="proyectos" class="seccion oculto">
+            <h2>Últimos Proyectos</h2>
+            <div class="galeria-proyectos">
+                <div class="tarjeta-proyecto">
+                    <h3>Trabajo de Fin de Grado (TFG) </h3>
+                    <p>Diseño de un canal de tráfico para telemetría y telecomando.</p>
+                </div>
+                <div class="tarjeta-proyecto">
+                    <h3>Generador de QR</h3>
+                    <p>Pequeño programa sencillo para generar los QR de mi web, LinkedIn, etc.</p>
+                </div>
+            </div>
+            <div class="tarjeta-proyecto">
+                <h3>Ver más proyectos destacados ...</h3>
+                <a href="proyectos.html" class="enlace-proyecto">Ver más &rarr;</a>
+            </div>
+        </section>
+
+        <section id="contacto" class="seccion oculto">
             <div style="text-align: center;">
                 <h2>Ponte en contacto conmigo</h2>
                 <a href="https://www.canva.com/design/DAGAPXdz9eE/WstU_wM81Um85RzlSsXfgw/view?utm_content=DAGAPXdz9eE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h2c367c4d66" target="_blank"><h3>Currículum Vitae</h3></a>
                 <br>
                 <p>¿Tienes una idea o una oferta? Estoy disponible para nuevos retos.</p>
+                
                 <a href="mailto:david.sanchezisabel@gmail.com" class="boton">Enviar Correo</a>
+                
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 David Sánchez Isabel. Todos los derechos reservados.</p>
+        <p>&copy; 2026 David Sánchez Isabel. Todos los derechos reservados.</p>
         <div class="redes-sociales">
-            <a href="https://www.linkedin.com/in/david-sánchez-isabel-465344328/" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/dsanchezisabel" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/david-sánchez-isabel-465344328/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/dsanchezisabel" target="_blank"><i class="fab fa-github"></i></a>
+            <li>
+                <a href="#contacto" target="_blank">Aviso Legal</a>
+                <a>|</a>
+                <a href="#contacto" target="_blank">Política de Privacidad</a>
+                <a>|</a>
+                <a href="#contacto" target="_blank">Política de Cookies</a>
+            </li>
         </div>
     </footer>
 
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                console.log(entry)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('mostrar');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.oculto');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 
 </body>
-
+</html>
