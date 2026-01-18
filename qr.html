@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de QR Instantáneo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        /* --- Estilos CSS para que se vea bonito --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box; /* Para que el padding no afecte el ancho */
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="url"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn-descargar {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .btn-descargar:hover {
+            background-color: #218838;
+        }
+
+        /* Este contenedor estará oculto, solo lo usamos para generar la imagen */
+        #qr-oculto {
+            display: none;
+        }
+
+        #mensaje-estado {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Generador de QR</h1>
+        <p>Introduce un enlace y se descargará la imagen.</p>
+        
+        <input type="url" id="inputUrl" placeholder="Ej. https://www.miweb.com" required>
+        
+        <button class="btn-descargar" onclick="generarYDescargar()">
+            Generar y Descargar QR
+        </button>
+
+        <p id="mensaje-estado"></p>
+        
+        <div id="qr-oculto"></div>
+    </div>
+
+    <script>
+        // --- Lógica en JavaScript ---
+
+        function generarYDescargar() {
+            const inputUrl = document.getElementById('inputUrl');
+            const contenedorQR = document.getElementById('qr-oculto');
+            const mensaje = document.getElementById('mensaje-estado');
+            const url = inputUrl.value.trim();
+
+            // 1. Validar que haya una URL
+            if (url === "") {
+                mensaje.textContent = "❌ Por favor, introduce un enlace válido.";
+                mensaje.style.color = "red";
+                inputUrl.focus();
+                return;
+            }
+
+            mensaje.textContent = "⏳ Generando...";
+            mensaje.style.color = "#666";
+
+            // 2. Limpiar cualquier QR generado previamente
+            contenedorQR.innerHTML = "";
+
+            // 3. Usar la librería para generar el QR en el contenedor oculto
+            new QRCode(contenedorQR, {
+                text: url,
+                width: 300, // Tamaño de la imagen
+                height: 300,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H // Alta corrección de errores
+            });
+
+            // 4. El truco de la descarga:
+            // La librería tarda unos milisegundos en crear la imagen <img> dentro del div.
+            // Esperamos un poquito (500ms) para asegurar que la imagen existe.
+            setTimeout(() => {
+                const imagenQR = contenedorQR.querySelector("img");
+
+                if (imagenQR) {
+                    // Creamos un enlace temporal <a> invisible en la página
+                    const enlaceDescarga = document.createElement("a");
+                    // La fuente de la imagen generada (es un código base64 largo)
+                    enlaceDescarga.href = imagenQR.src;
+                    // El nombre con el que se descargará el archivo
+                    enlaceDescarga.download = "codigo_qr_web.png";
+                    
+                    // Simulamos un clic en ese enlace
+                    document.body.appendChild(enlaceDescarga);
+                    enlaceDescarga.click();
+                    document.body.removeChild(enlaceDescarga);
+                    
+                    mensaje.textContent = "✅ ¡Descarga iniciada!";
+                    mensaje.style.color = "green";
+                } else {
+                    mensaje.textContent = "❌ Error al generar la imagen.";
+                }
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
