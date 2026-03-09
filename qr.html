@@ -3,158 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de QR Instantáneo</title>
+    <title data-i18n="title_qr">Generador QR | DBlog</title>
+    <link rel="preload" as="image" href="img/logo.png">
+
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:title" content="David Sánchez Isabel | Ingeniero de Telecomunicaciones">
+    <meta property="og:description" content="Portfolio técnico: Redes, Software y Sistemas. Explora mis proyectos y mi terminal interactiva.">
+    <meta property="og:image" content="img/logo.png"> <meta property="og:url" content="https://dsanchezisabel.github.io/my_web/">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-    <style>
-        /* --- Estilos CSS para que se vea bonito --- */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 400px;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        input[type="url"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box; /* Para que el padding no afecte el ancho */
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input[type="url"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        .btn-descargar {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-
-        .btn-descargar:hover {
-            background-color: #218838;
-        }
-
-        /* Este contenedor estará oculto, solo lo usamos para generar la imagen */
-        #qr-oculto {
-            display: none;
-        }
-
-        #mensaje-estado {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-    </style>
 </head>
 <body>
+    <header id="header-principal" class="scrolled">
+        <nav>
+            <a href="index.html" class="contenedor-logo" title="Volver al inicio">
+                <img src="img/logo.png" alt="Avatar" class="foto-nav" loading="lazy">
+                <span class="logo-texto">David Sánchez Isabel</span>
+            </a>
+            <div class="nav-controles">
+                <button id="btn-lang" class="btn-tema" style="font-weight: bold; font-family: var(--fuente-titulos);">EN</button>
+                <button id="btn-tema" class="btn-tema" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
+    </header>
 
-    <div class="card">
-        <h1>Generador de QR</h1>
-        <p>Introduce un enlace y se descargará la imagen.</p>
-        
-        <input type="url" id="inputUrl" placeholder="Ej. https://www.miweb.com" required>
-        
-        <button class="btn-descargar" onclick="generarYDescargar()">
-            Generar y Descargar QR
-        </button>
-
-        <p id="mensaje-estado"></p>
-        
-        <div id="qr-oculto"></div>
-    </div>
-
-    <script>
-        // --- Lógica en JavaScript ---
-
-        function generarYDescargar() {
-            const inputUrl = document.getElementById('inputUrl');
-            const contenedorQR = document.getElementById('qr-oculto');
-            const mensaje = document.getElementById('mensaje-estado');
-            const url = inputUrl.value.trim();
-
-            // 1. Validar que haya una URL
-            if (url === "") {
-                mensaje.textContent = "❌ Por favor, introduce un enlace válido.";
-                mensaje.style.color = "red";
-                inputUrl.focus();
-                return;
-            }
-
-            mensaje.textContent = "⏳ Generando...";
-            mensaje.style.color = "#666";
-
-            // 2. Limpiar cualquier QR generado previamente
-            contenedorQR.innerHTML = "";
-
-            // 3. Usar la librería para generar el QR en el contenedor oculto
-            new QRCode(contenedorQR, {
-                text: url,
-                width: 300, // Tamaño de la imagen
-                height: 300,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H // Alta corrección de errores
-            });
-
-            // 4. El truco de la descarga:
-            // La librería tarda unos milisegundos en crear la imagen <img> dentro del div.
-            // Esperamos un poquito (500ms) para asegurar que la imagen existe.
-            setTimeout(() => {
-                const imagenQR = contenedorQR.querySelector("img");
-
-                if (imagenQR) {
-                    // Creamos un enlace temporal <a> invisible en la página
-                    const enlaceDescarga = document.createElement("a");
-                    // La fuente de la imagen generada (es un código base64 largo)
-                    enlaceDescarga.href = imagenQR.src;
-                    // El nombre con el que se descargará el archivo
-                    enlaceDescarga.download = "codigo_qr_web.png";
-                    
-                    // Simulamos un clic en ese enlace
-                    document.body.appendChild(enlaceDescarga);
-                    enlaceDescarga.click();
-                    document.body.removeChild(enlaceDescarga);
-                    
-                    mensaje.textContent = "✅ ¡Descarga iniciada!";
-                    mensaje.style.color = "green";
-                } else {
-                    mensaje.textContent = "❌ Error al generar la imagen.";
-                }
-            }, 500);
-        }
-    </script>
-
+    <main class="pantalla-completa-centrada">
+        <section class="seccion qr-seccion">
+            <div class="tarjeta-proyecto texto-centrado">
+                <h1 class="titulo-qr" data-i18n="qr_titulo">Generador de QR</h1>
+                <p class="subtitulo-qr" data-i18n="qr_subtitulo">Introduce un enlace y descarga la imagen instantáneamente.</p>
+                <input type="url" id="inputUrl" class="qr-input" placeholder="Ej. https://www.linkedin.com/in/david..." required>
+                <button class="boton qr-btn" id="btn-generar-qr" data-i18n="qr_btn">
+                    <i class="fas fa-qrcode"></i> Generar y Descargar QR
+                </button>
+                <p id="mensaje-estado" class="qr-mensaje"></p>
+                <div id="qr-oculto" style="display: none;"></div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="index.html" class="btn-filtro"><i class="fas fa-arrow-left"></i> <span data-i18n="btn_volver">Volver al Inicio</span></a>
+            </div>
+        </section>
+    </main>
+    <script src="lang.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

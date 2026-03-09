@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "titulo_es": "Cisco y Cellnex",
+        "titulo_en": "Cisco and Cellnex",
+        "descripcion_es": "Piloto de IA para automatización inteligente de redes en telecomunicaciones.",
+        "descripcion_en": "AI pilot for intelligent network automation in telecommunications.",
+        "enlace": "https://www.zonamovilidad.es/cisco-cellnex-avanzan-automatizacion-inteligente-redes-piloto-ia-aplicado-operaciones",
+        "textoEnlace_es": "Ver más &rarr;",
+        "textoEnlace_en": "Read more &rarr;"
+    },
+    {
+        "id": 2,
+        "titulo_es": "Microsoft IA",
+        "titulo_en": "Microsoft AI",
+        "descripcion_es": "Microsoft acelera el retorno de la inteligencia en telecomunicaciones con una plataforma unificada.",
+        "descripcion_en": "Microsoft accelerates intelligence return in telecommunications with a unified platform.",
+        "enlace": "https://news.microsoft.com/source/latam/noticias-de-microsoft/microsoft-acelera-el-retorno-de-la-inteligencia-en-telecomunicaciones-con-una-plataforma-de-ia-unificada-y-de-confianza/",
+        "textoEnlace_es": "Ver más &rarr;",
+        "textoEnlace_en": "Read more &rarr;"
+    }
+]

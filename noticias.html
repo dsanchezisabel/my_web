@@ -3,66 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBlog | Noticias</title>
-
-    <link rel="icon" href="logo.png" type="image/jpeg">
+    <title data-i18n="title_noticias">Noticias | DBlog</title>
+    <link rel="preload" as="image" href="img/logo.png">
     
+    <link rel="icon" href="img/logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+
+    <meta property="og:title" content="David Sánchez Isabel | Ingeniero de Telecomunicaciones">
+    <meta property="og:description" content="Portfolio técnico: Redes, Software y Sistemas. Explora mis proyectos y mi terminal interactiva.">
+    <meta property="og:image" content="img/logo.png"> <meta property="og:url" content="https://dsanchezisabel.github.io/my_web/">
+    <meta property="og:type" content="website">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <header>
+    <div id="barra-progreso"></div>
+
+    <header id="header-principal">
         <nav>
-            <div class="logo">David Sánchez Isabel</div>
-            <ul>
-                <li><a href="index.html">Inicio</a></li> 
-                <li><a href="index.html#sobre-mi">Sobre mí</a></li>
-                <li><a href="index.html#proyectos">Proyectos</a></li>
-                <li><a href="#" class="activo">Noticias</a></li>
-                <li><a href="index.html#contacto">Contacto</a></li>
-            </ul>
+            <a href="index.html" class="contenedor-logo" title="Volver al inicio">
+                <img src="img/logo.png" alt="Avatar" class="foto-nav" loading="lazy">
+                <span class="logo-texto">David Sánchez Isabel</span>
+            </a>
+
+            <div class="nav-controles">
+                <button id="btn-lang" class="btn-tema" style="font-weight: bold; font-family: var(--fuente-titulos);">EN</button>
+                <button id="btn-tema" class="btn-tema" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+
+                <div class="dropdown">
+                    <button class="dropbtn" id="menu-btn">Menú <i class="fas fa-chevron-down"></i></button>
+                    <ul class="dropdown-content" id="nav-links">
+                        <li><a href="index.html#inicio" data-i18n="nav_inicio">Inicio</a></li>
+                        <li><a href="index.html#contacto" data-i18n="nav_correo">Enviar Correo</a></li>
+                        <li><a href="#footer-dinamico" data-i18n="nav_contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main>
-        <section class="seccion" style="margin-top: 8rem; margin-bottom: 2rem;">
-            <h2>Noticias de interés</h2>
-            <p>Aquí puedes ver noticias relacionadas con las telecomunicaciones.</p>
+        <section class="seccion oculto espaciado-top">
+            <h2 data-i18n="nav_noticias">Noticias</h2>
         </section>
 
-        <section id="noticias" class="seccion">
-            <div class="galeria-proyectos">
-                
-                <div class="tarjeta-proyecto">
-                    <h3>Cisco y Zellnex</h3>
-                    <p>Piloto de IA para automatización inteligente de redes en telecomunicaciones.</p>
-                    <a href="https://www.zonamovilidad.es/cisco-cellnex-avanzan-automatizacion-inteligente-redes-piloto-ia-aplicado-operaciones" target="_blank">Ver más &rarr;</a>
-                </div>
-
-            </div>
+        <section class="seccion oculto espaciado-cero">
+            <div id="contenedor-noticias" class="galeria-proyectos"></div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 David Sánchez Isabel. Todos los derechos reservados.</p>
-        <div class="redes-sociales">
-            <a href="https://www.linkedin.com/in/david-sánchez-isabel-465344328/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/dsanchezisabel" target="_blank"><i class="fab fa-github"></i></a>
-            <li>
-                <a href="#contacto" target="_blank">Aviso Legal</a>
-                <a>|</a>
-                <a href="#contacto" target="_blank">Política de Privacidad</a>
-                <a>|</a>
-                <a href="#contacto" target="_blank">Política de Cookies</a>
-            </li>
-        </div>
-    </footer>
+    <footer id="footer-dinamico"></footer>
 
+    <button id="btn-flotante" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="lang.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

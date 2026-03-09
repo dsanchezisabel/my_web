@@ -1,0 +1,21 @@
+{
+  "name": "DBlog | David Sánchez Isabel",
+  "short_name": "DBlog",
+  "description": "Portfolio de Ingeniería en Telecomunicaciones y Software.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

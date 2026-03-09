@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "titulo_es": "Trabajo de Fin de Grado (TFG)",
+        "titulo_en": "Bachelor's Thesis (TFG)",
+        "descripcion_es": "Diseño y desarrollo de un canal de tráfico para telemetría y telecomando.",
+        "descripcion_en": "Design and development of a traffic channel for telemetry and telecommand.",
+        "categoria": "telecomunicaciones",
+        "enlace": "#",
+        "textoEnlace_es": "Próximamente",
+        "textoEnlace_en": "Coming soon",
+        "destacado": true
+    },
+    {
+        "id": 2,
+        "titulo_es": "Generador de QR",
+        "titulo_en": "QR Code Generator",
+        "descripcion_es": "Pequeño programa sencillo para generar los QR de mi web, LinkedIn, etc.",
+        "descripcion_en": "Simple script to generate QR codes for my website, LinkedIn, etc.",
+        "categoria": "software",
+        "enlace": "qr.html",
+        "textoEnlace_es": "Ver más &rarr;",
+        "textoEnlace_en": "View more &rarr;",
+        "destacado": true
+    },
+    {
+        "id": 3,
+        "titulo_es": "Simulación BGP/OSPF",
+        "titulo_en": "BGP/OSPF Simulation",
+        "descripcion_es": "Configuración de enrutamiento dinámico y topologías de red en Cisco Packet Tracer.",
+        "descripcion_en": "Dynamic routing configuration and network topologies in Cisco Packet Tracer.",
+        "categoria": "redes",
+        "enlace": "#",
+        "textoEnlace_es": "Ver repositorio &rarr;",
+        "textoEnlace_en": "View repository &rarr;",
+        "destacado": false
+    }
+]
