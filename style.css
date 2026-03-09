@@ -354,4 +354,72 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-principal); 
+
+}
+
+/* =========================================
+   AJUSTES RESPONSIVE PARA EL HEADER
+   ========================================= */
+
+/* Nav general: permitimos que los elementos bajen si no hay espacio */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que el contenido salte de línea en móviles muy pequeños */
+    padding: 0.5rem 1rem;
+}
+
+/* Contenedor de botones (Idioma, Tema, Menú) */
+.nav-controles {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reducimos el espacio entre botones en móvil */
+}
+
+@media (max-width: 480px) {
+    /* Reducimos el logo para ganar espacio */
+    .foto-nav {
+        width: 32px;
+        height: 32px;
+    }
+    .logo-texto {
+        font-size: 0.9rem;
+        max-width: 120px; /* Evita que el nombre empuje los botones fuera */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Botones de control más compactos pero usables */
+    .btn-tema {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+
+    /* El botón de menú (Dropdown) */
+    .dropbtn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* En móviles extremadamente pequeños (iPhone SE, etc.) */
+@media (max-width: 360px) {
+    header nav {
+        justify-content: center; /* Centramos todo */
+        gap: 10px;
+    }
+    
+    .contenedor-logo {
+        flex-basis: 100%; /* El logo ocupa toda la línea arriba */
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+
+    .nav-controles {
+        flex-basis: 100%; /* Los botones ocupan la línea de abajo */
+        justify-content: center;
+    }
 }
