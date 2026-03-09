@@ -751,4 +751,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 12. REGISTRO DEL SERVICE WORKER (PWA) ---
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('SW registrado con éxito en el scope:', reg.scope))
+                .catch(err => console.log('Fallo al registrar SW:', err));
+        });
+    }
 });

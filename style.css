@@ -89,7 +89,7 @@ nav {
 .nav-controles { 
     display: flex; 
     align-items: center; 
-    gap: 15px; /* Espacio entre botones */
+    gap: 15px;
 }
 
 #btn-lang { margin-right: 5px; font-weight: bold; }
@@ -109,6 +109,10 @@ nav {
     opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; 
 }
 .dropdown-content.show { display: flex; flex-direction: column; opacity: 1; transform: translateY(0); }
+.dropdown-content li { margin: 0; border-bottom: 1px solid var(--color-bordes); }
+.dropdown-content li:last-child { border-bottom: none; }
+.dropdown-content li a { color: var(--color-texto); padding: 15px 20px; display: block; font-weight: 500; transition: background-color 0.3s, color 0.3s, padding-left 0.3s; }
+.dropdown-content li a:hover { background-color: var(--color-fondo); color: var(--color-principal); padding-left: 25px; }
 
 /* =========================================
    3. HERO & NODOS
@@ -154,23 +158,44 @@ nav {
 .tarjeta-proyecto:hover { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); border-color: var(--color-principal); }
 
 /* =========================================
+   6. FORMULARIO Y FILTROS (¡RESTURADO!)
+   ========================================= */
+.formulario-contacto { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+.formulario-contacto input, .formulario-contacto textarea { width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--color-bordes); background: var(--color-tarjetas); color: var(--color-texto); font-family: var(--fuente-texto); font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; }
+.formulario-contacto input:focus, .formulario-contacto textarea:focus { outline: none; border-color: var(--color-principal); box-shadow: 0 0 8px rgba(37, 99, 235, 0.3); }
+.formulario-contacto .boton { margin-top: 5px; width: 100%; justify-content: center; }
+
+.filtros-proyectos { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-filtro { background: var(--color-tarjetas); border: 1px solid var(--color-bordes); color: var(--color-texto); padding: 8px 18px; border-radius: 30px; cursor: pointer; font-family: var(--fuente-titulos); font-size: 0.9rem; transition: all 0.3s ease; }
+.btn-filtro.activo, .btn-filtro:hover { background: var(--color-principal); color: #ffffff; border-color: var(--color-principal); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+
+/* =========================================
    7. TERMINAL INTERACTIVA
    ========================================= */
 .terminal-container { max-width: 700px; margin: 40px auto; background-color: #1e1e1e; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); overflow: hidden; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; border: 1px solid #333; }
-.terminal-header { background-color: #2d2d2d; padding: 10px 15px; display: flex; align-items: center; border-bottom: 1px solid #111; }
+.terminal-header { background-color: #2d2d2d; padding: 10px 15px; display: flex; align-items: center; border-bottom: 1px solid #111; position: relative;}
 .terminal-botones { display: flex; gap: 8px; }
 .terminal-botones .dot { width: 12px; height: 12px; border-radius: 50%; }
 .dot.red { background-color: #ff5f56; } .dot.yellow { background-color: #ffbd2e; } .dot.green { background-color: #27c93f; }
+.terminal-title { position: absolute; width: 100%; text-align: center; left: 0; color: #888; font-size: 0.85rem; pointer-events: none; }
 .terminal-body { padding: 15px; height: 200px; overflow-y: auto; background-color: #121212; scroll-behavior: smooth; }
 .terminal-output { color: #e5e5e5; margin-bottom: 5px; line-height: 1.4; min-height: 1.4em; }
 .terminal-output.verde { color: #4af626; }
 .comando-resaltado { color: #ffbd2e; font-weight: bold; }
+.terminal-input-area { display: flex; padding: 0 15px 15px 15px; background-color: #121212; align-items: center; }
+.terminal-prompt { color: #27c93f; margin-right: 10px; white-space: nowrap; }
 #terminal-input { background: transparent; border: none; color: #e5e5e5; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; width: 100%; outline: none; }
 
 /* =========================================
    8. FOOTER
    ========================================= */
 footer { background: #111111; color: #9ca3af; text-align: center; padding: 3rem 1rem; margin-top: 5rem; }
+.redes-sociales { margin-bottom: 1.5rem; }
+.redes-sociales a { color: #f3f4f6; margin: 0 10px; font-size: 1.2rem; transition: color 0.3s; }
+.redes-sociales a:hover { color: var(--color-principal); }
+.separador { color: #475569; }
+.enlaces-legales { margin-bottom: 1rem; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.enlaces-legales a { font-size: 0.85rem; text-decoration: underline; }
 
 /* =========================================
    10. BARRA DE PROGRESO Y BOTÓN FLOTANTE
@@ -230,6 +255,7 @@ body.cursor-hover .cursor-personalizado {
     .logo-texto { font-size: 1.2rem; }
     .contenido-hero h1 { font-size: 2.2rem; }
     .dropdown-content { position: fixed; top: 60px; left: 0; width: 100%; border-radius: 0; }
+    .terminal-container { width: 95%; margin: 10px auto; }
 }
 
 @media (max-width: 480px) {
