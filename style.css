@@ -305,7 +305,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 ::-webkit-scrollbar-thumb:hover { background-color: var(--color-principal); }
 
 /* =========================================
-   19. AJUSTES RESPONSIVE FINALES (MÓVIL)
+   18. AJUSTES RESPONSIVE FINALES (MÓVIL)
    ========================================= */
 @media (max-width: 480px) {
     .foto-nav { width: 32px; height: 32px; }
@@ -320,4 +320,5 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     .contenedor-logo { flex-basis: 100%; justify-content: center; margin-bottom: 5px; }
     .nav-controles { flex-basis: 100%; justify-content: center; }
 }
+
 
