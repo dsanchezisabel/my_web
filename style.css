@@ -305,39 +305,6 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 ::-webkit-scrollbar-thumb:hover { background-color: var(--color-principal); }
 
 /* =========================================
-   18. CURSOR MINIMALISTA CON INVERSIÓN
-   ========================================= */
-/* Ocultamos el cursor original solo en PC */
-@media (min-width: 769px) {
-    *, html, body, a, button, input, textarea, i, span {
-        cursor: none !important;
-    }
-}
-
-.cursor-personalizado {
-    position: fixed;
-    top: 0; left: 0;
-    width: 12px; height: 12px;
-    background-color: var(--color-texto-mutado);
-    border-radius: 50%;
-    z-index: 9999999 !important;
-    pointer-events: none;
-    user-select: none;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, mix-blend-mode 0.2s ease;
-    opacity: 0;
-}
-body.cursor-hover .cursor-personalizado {
-    width: 45px; height: 45px;
-    background-color: #ffffff !important;
-    mix-blend-mode: difference;
-}
-@media (max-width: 768px) {
-    .cursor-personalizado { display: none !important; }
-    * { cursor: auto !important; }
-}
-
-/* =========================================
    19. AJUSTES RESPONSIVE FINALES (MÓVIL)
    ========================================= */
 @media (max-width: 480px) {
@@ -353,3 +320,4 @@ body.cursor-hover .cursor-personalizado {
     .contenedor-logo { flex-basis: 100%; justify-content: center; margin-bottom: 5px; }
     .nav-controles { flex-basis: 100%; justify-content: center; }
 }
+
