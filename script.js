@@ -741,4 +741,14 @@ document.addEventListener('DOMContentLoaded', () => {
         checkLang();
         if(btnLang) btnLang.addEventListener('click', () => setTimeout(checkLang, 10));
     }
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            // Usamos './sw.js' para asegurar que el scope es la carpeta actual
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('SW registrado con éxito en el scope:', reg.scope))
+                .catch(err => console.log('Fallo al registrar SW:', err));
+        });
+    }
+
 });
