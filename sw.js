@@ -1,5 +1,6 @@
-const CACHE_NAME = 'dblog-v2'; // Cambiamos el nombre para forzar actualización
+const CACHE_NAME = 'dblog-v3'; // Incrementamos versión
 const assets = [
+  './',               // Cachea la raíz (index.html)
   'index.html',
   'style.css',
   'script.js',
@@ -10,15 +11,14 @@ const assets = [
   'img/foto_orla.png'
 ];
 
-// Instalación: Guardamos archivos base
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Cacheando archivos base...');
-      return cache.addAll(assets);
+      // Usamos force para que si un archivo falla, no rompa todo el proceso
+      return Promise.allSettled(assets.map(url => cache.add(url)));
     })
   );
-  self.skipWaiting(); // Fuerza a que el nuevo SW tome el control
+  self.skipWaiting();
 });
 
 // Activación: Limpiamos cachés antiguas
