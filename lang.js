@@ -46,6 +46,7 @@ const traducciones = {
         "form_correo": "Tu Correo",
         "form_mensaje": "Escribe tu mensaje aquí...",
         "form_btn": "<i class='fas fa-paper-plane'></i> Enviar Mensaje",
+        "404_btn": "Ir a la página principal",
         
         "footer_legal": "Política de la web",
         "footer_derechos": "Todos los derechos reservados.",
@@ -138,6 +139,7 @@ const traducciones = {
         "form_correo": "Your Email",
         "form_mensaje": "Write your message here...",
         "form_btn": "<i class='fas fa-paper-plane'></i> Send Message",
+        "404_btn": "Main page",
         
         "footer_legal": "Web Policy",
         "footer_derechos": "All rights reserved.",
