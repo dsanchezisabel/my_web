@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="separador">|</span>
                 <a href="https://github.com/dsanchezisabel" target="_blank" aria-label="Perfil de GitHub"><i class="fab fa-github"></i> GitHub</a>
                 <span class="separador">|</span>
-                <a href="https://www.canva.com/design/DAGAPXdz9eE/WstU_wM81Um85RzlSsXfgw/view" target="_blank" aria-label="Ver Currículum Vitae"><i class="fas fa-file-alt"></i> CV</a>
+                <a href="docs/CV David Sánchez Isabel.pdf" target="_blank" aria-label="Ver Currículum Vitae"><i class="fas fa-file-alt"></i> CV</a>
             </div>
             <ul class="enlaces-legales">
                 <li><a href="politica.html" data-i18n="footer_legal">Política de la web</a></li>
@@ -715,5 +715,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
