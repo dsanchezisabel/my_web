@@ -1,7 +1,7 @@
 /* Transiciones fluidas entre páginas (SPA feel) */
-@view-transition {
+/*@view-transition {
     navigation: auto;
-}
+}*/
 
 /* =========================================
    1. VARIABLES Y CONFIGURACIÓN GLOBAL
@@ -319,6 +319,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     .contenedor-logo { flex-basis: 100%; justify-content: center; margin-bottom: 5px; }
     .nav-controles { flex-basis: 100%; justify-content: center; }
 }
+
 
 
 
