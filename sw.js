@@ -7,8 +7,8 @@ const assets = [
   'lang.js',
   'proyectos.json',
   'noticias.json',
-  'img/logo.png',
-  'img/foto_orla.png'
+  'img/logo.webp',
+  'img/foto_orla.webp'
 ];
 
 self.addEventListener('install', event => {
@@ -55,3 +55,4 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
