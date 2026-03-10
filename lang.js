@@ -68,7 +68,7 @@ const traducciones = {
         "term_help_contact": "Iniciar protocolo de comunicación",
         "term_help_clear": "Limpiar la consola",
         "term_whoami": "David Sánchez Isabel. Estudiante de Ingeniería en Telecomunicaciones y apasionado por las redes y el desarrollo.",
-        "term_skills": "[+] Redes: OSPF, BGP, TCP/IP<br>[+] Sistemas: VHDL, Arduino, SDR<br>[+] Software: Python, MATLAB, JS/HTML",
+        "term_skills": "Cargando módulos de ingeniería...<br><br><span class='comando-resaltado'>[+] Software & Data:</span> Python, C/C++, Julia, Ensamblador, SQL, TLA+, PlusCal.<br><span class='comando-resaltado'>[+] Telecom & HW:</span> VHDL, MATLAB, Simulink, GNU Radio (SDR), Wireshark.<br><span class='comando-resaltado'>[+] Web & APIs:</span> JavaScript, HTML5/CSS3, Flask, APIs REST.<br><span class='comando-resaltado'>[+] Especialidad:</span> Fibra Óptica, Satélites, Radionavegación, Gestión de Proyectos.<br><span class='comando-resaltado'>[+] DevOps & Tools:</span> GitLab, GanttProject, VS Code.",
         "term_contact": "Enviando ping a david.sanchezisabel@gmail.com... [OK]",
         "term_sudo": "Error: Usuario no está en el archivo sudoers. Este incidente será reportado.",
         "term_not_found_1": "Comando no encontrado:",
@@ -161,7 +161,7 @@ const traducciones = {
         "term_help_contact": "Initiate communication protocol",
         "term_help_clear": "Clear the console",
         "term_whoami": "David Sánchez Isabel. Telecommunications Engineering student passionate about networks and development.",
-        "term_skills": "[+] Networks: OSPF, BGP, TCP/IP<br>[+] Systems: VHDL, Arduino, SDR<br>[+] Software: Python, MATLAB, JS/HTML",
+        "term_skills": "Loading engineering modules...<br><br><span class='comando-resaltado'>[+] Software & Data:</span> Python, C/C++, Julia, Assembly, SQL, TLA+, PlusCal.<br><span class='comando-resaltado'>[+] Telecom & HW:</span> VHDL, MATLAB, Simulink, GNU Radio (SDR), Wireshark.<br><span class='comando-resaltado'>[+] Web & APIs:</span> JavaScript, HTML5/CSS3, Flask, REST APIs.<br><span class='comando-resaltado'>[+] Expertise:</span> Optical Fiber, Satellites, Radionavigation, Project Management.<br><span class='comando-resaltado'>[+] DevOps & Tools:</span> GitLab, GanttProject, VS Code.",
         "term_contact": "Sending ping to david.sanchezisabel@gmail.com... [OK]",
         "term_sudo": "Error: User is not in the sudoers file. This incident will be reported.",
         "term_not_found_1": "Command not found:",
@@ -186,3 +186,4 @@ const traducciones = {
         "btn_volver": "Back to Home"
     }
 };
+
