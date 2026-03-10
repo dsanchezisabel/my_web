@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footerDinamico) {
         footerDinamico.innerHTML = `
             <div class="redes-sociales">
-                <a href="https://www.linkedin.com/in/david-sánchez-isabel-465344328/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://www.linkedin.com/in/david-sánchez-isabel-465344328/" target="_blank" aria-label="Perfil de LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 <span class="separador">|</span>
-                <a href="https://github.com/dsanchezisabel" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://github.com/dsanchezisabel" target="_blank" aria-label="Perfil de GitHub"><i class="fab fa-github"></i> GitHub</a>
                 <span class="separador">|</span>
-                <a href="https://www.canva.com/design/DAGAPXdz9eE/WstU_wM81Um85RzlSsXfgw/view" target="_blank"><i class="fas fa-file-alt"></i> CV</a>
+                <a href="https://www.canva.com/design/DAGAPXdz9eE/WstU_wM81Um85RzlSsXfgw/view" target="_blank" aria-label="Ver Currículum Vitae"><i class="fas fa-file-alt"></i> CV</a>
             </div>
             <ul class="enlaces-legales">
                 <li><a href="politica.html" data-i18n="footer_legal">Política de la web</a></li>
@@ -77,24 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnFlotante = document.getElementById('btn-flotante');
 
     window.addEventListener('scroll', () => {
-        // Efecto del Header
         if (window.scrollY > 50) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
 
-        // Calcular porcentaje para la barra de progreso
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrollPercent = (scrollTop / scrollHeight) * 100;
         if (barraProgreso) barraProgreso.style.width = scrollPercent + '%';
 
-        // Mostrar u ocultar botón flotante
         if (btnFlotante) {
             if (window.scrollY > 300) btnFlotante.classList.add('visible');
             else btnFlotante.classList.remove('visible');
         }
     });
 
-    // Acción del botón flotante para subir
     if (btnFlotante) {
         btnFlotante.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -302,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (terminalInput && terminalBody) {
         document.getElementById('mi-terminal').addEventListener('click', () => terminalInput.focus());
 
-        // --- HISTORIAL DE COMANDOS ---
+        // --- HISTORIAL DE COMANDOS Y AUTOCOMPLETADO ---
         let historialComandos = [];
         let posicionHistorial = 0;
 
@@ -312,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.value = ''; 
                 if (comandoStr === '') return;
 
-                // Guardamos el comando en el historial y actualizamos la posición
                 historialComandos.push(comandoStr);
                 posicionHistorial = historialComandos.length;
 
@@ -320,33 +315,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 procesarComando(comandoStr);
                 
             } else if (event.key === 'ArrowUp') {
-                event.preventDefault(); // Evita que el cursor salte al principio del input
+                event.preventDefault(); 
                 if (posicionHistorial > 0) {
                     posicionHistorial--;
                     this.value = historialComandos[posicionHistorial];
                 }
             } else if (event.key === 'ArrowDown') {
-                event.preventDefault(); // Evita que el cursor salte al final
+                event.preventDefault(); 
                 if (posicionHistorial < historialComandos.length - 1) {
                     posicionHistorial++;
                     this.value = historialComandos[posicionHistorial];
                 } else {
                     posicionHistorial = historialComandos.length;
-                    this.value = ''; // Si bajamos del todo, dejamos el input vacío
+                    this.value = ''; 
                 }
             } else if (event.key === 'Tab') {
-                event.preventDefault(); // Evita que el tabulador te saque del input
+                event.preventDefault(); 
                 
-                // Lista de tus comandos
                 const comandos = ['help', 'whoami', 'skills', 'contact', 'clear', 'sudo rm -rf /', 'ping', 'matrix'];
                 const inputActual = this.value.trim().toLowerCase();
                 
                 if (inputActual !== '') {
-                    // Busca comandos que empiecen por lo que ha escrito el usuario
                     const coincidencias = comandos.filter(cmd => cmd.startsWith(inputActual));
-                    
                     if (coincidencias.length === 1) {
-                        this.value = coincidencias[0]; // Si solo hay una coincidencia, autocompleta
+                        this.value = coincidencias[0]; 
                     }
                 }
             }
@@ -388,37 +380,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     imprimirEnTerminal("--- david-portfolio.local ping statistics ---", true);
                     imprimirEnTerminal("1 packets transmitted, 1 packets received, 0.0% packet loss", true);
                     break;
-                
-                // --- INICIO EASTER EGGS ---
-                case 'matrix':
+                case 'sudo rm -rf /':
                     imprimirEnTerminal(idiomaActual === 'es' ? "Despertando, Neo..." : "Wake up, Neo...", true);
                     setTimeout(iniciarMatrix, 1000);
                     break;
-
-                case 'sudo rm -rf /':
                 case 'sudo rm -rf /*':
-                    const lang = idiomaActual; // Cogemos el idioma actual
+                    const lang = idiomaActual; 
                     imprimirEnTerminal(lang === 'es' ? "⚠️ ALERTA: Iniciando borrado crítico del sistema de archivos..." : "⚠️ WARNING: Initiating critical file system wipe...", true);
                     
-                    // 1. Iniciar temblor y glitch
                     setTimeout(() => {
                         document.body.classList.add('hacker-shake');
                     }, 500);
                     
-                    // 2. Apagón total (Blackout)
                     setTimeout(() => {
                         document.body.classList.remove('hacker-shake');
                         document.body.classList.add('hacker-blackout');
                     }, 2500);
 
-                    // 3. Reinicio y vuelta a la normalidad
                     setTimeout(() => {
                         document.body.classList.remove('hacker-blackout');
                         imprimirEnTerminal(lang === 'es' ? "Reinicio de emergencia completado. Archivos recuperados." : "Emergency reboot completed. Files recovered.", true);
                     }, 5500);
                     break;
-                // --- FIN EASTER EGGS ---
-                
                 default:
                     imprimirEnTerminal(`${t.term_not_found_1} '${cmd}'. ${t.term_not_found_2}`, true);
             }
@@ -429,20 +412,17 @@ document.addEventListener('DOMContentLoaded', () => {
             p.className = esRespuesta ? 'terminal-output verde' : 'terminal-output';
             terminalBody.appendChild(p);
             
-            // Si es un comando del usuario, se imprime instantáneamente
             if (!esRespuesta) {
                 p.innerHTML = texto;
                 terminalBody.scrollTop = terminalBody.scrollHeight;
                 return;
             }
 
-            // Si es la respuesta del sistema, efecto máquina de escribir
             let i = 0;
             let isTag = false;
 
             function typeWriter() {
                 if (i < texto.length) {
-                    // Si encontramos una etiqueta HTML (ej. <span> o <br>), la pasamos rápida
                     if (texto.charAt(i) === '<') isTag = true;
                     
                     p.innerHTML = texto.substring(0, i + 1);
@@ -453,9 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     terminalBody.scrollTop = terminalBody.scrollHeight;
                     
                     if (isTag) {
-                        typeWriter(); // Velocidad luz para el código HTML
+                        typeWriter(); 
                     } else {
-                        setTimeout(typeWriter, 10); // Milisegundos entre letras (ajusta para más velocidad)
+                        setTimeout(typeWriter, 10); 
                     }
                 }
             }
@@ -516,14 +496,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCopiar = document.getElementById('btn-copiar');
     if (btnCopiar) {
         btnCopiar.addEventListener('click', () => {
-            const correo = "david.sanchezisabel@gmail.com"; // Pon aquí tu correo real
+            const correo = "david.sanchezisabel@gmail.com"; 
             navigator.clipboard.writeText(correo).then(() => {
-                // Un pequeño feedback visual: cambiar el icono momentáneamente
                 const iconoOriginal = btnCopiar.innerHTML;
                 btnCopiar.innerHTML = '<i class="fas fa-check" style="color:#27c93f;"></i>';
                 setTimeout(() => btnCopiar.innerHTML = iconoOriginal, 2000);
-                
-                // Opcional: imprimir en la propia terminal que se ha copiado
                 imprimirEnTerminal("Correo copiado al portapapeles: " + correo, true);
             });
         });
@@ -533,12 +510,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const formContacto = document.querySelector('.formulario-contacto');
     if (formContacto) {
         formContacto.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Evita que la web recargue o salte a Formspree
+            e.preventDefault(); 
             
             const btn = formContacto.querySelector('button[type="submit"]');
             const textoOriginal = btn.innerHTML;
             
-            // Estado de carga
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             btn.style.opacity = '0.7';
             btn.disabled = true;
@@ -551,22 +527,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 
                 if (response.ok) {
-                    // Éxito
                     btn.innerHTML = '<i class="fas fa-check"></i> ¡Mensaje Enviado!';
-                    btn.style.backgroundColor = '#10b981'; // Verde éxito
+                    btn.style.backgroundColor = '#10b981'; 
                     btn.style.opacity = '1';
-                    formContacto.reset(); // Limpia los campos
+                    formContacto.reset(); 
                 } else {
                     throw new Error('Error de red');
                 }
             } catch (error) {
-                // Error
                 btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error al enviar';
-                btn.style.backgroundColor = '#ef4444'; // Rojo error
+                btn.style.backgroundColor = '#ef4444'; 
                 btn.style.opacity = '1';
             }
             
-            // Restaurar el botón después de 3 segundos
             setTimeout(() => {
                 btn.innerHTML = textoOriginal;
                 btn.style.backgroundColor = '';
@@ -577,7 +550,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- MOTOR DEL EFECTO MATRIX ---
     function iniciarMatrix() {
-        // 1. Crear el canvas de Matrix a pantalla completa
         const canvasMatrix = document.createElement('canvas');
         canvasMatrix.id = 'matrix-canvas';
         canvasMatrix.style.position = 'fixed';
@@ -585,39 +557,34 @@ document.addEventListener('DOMContentLoaded', () => {
         canvasMatrix.style.left = '0';
         canvasMatrix.style.width = '100vw';
         canvasMatrix.style.height = '100vh';
-        canvasMatrix.style.zIndex = '9999'; // Por encima de todo
-        canvasMatrix.style.cursor = 'pointer'; // Indica que se puede hacer clic
+        canvasMatrix.style.zIndex = '9999'; 
+        canvasMatrix.style.cursor = 'pointer'; 
         document.body.appendChild(canvasMatrix);
 
         const ctx = canvasMatrix.getContext('2d');
         canvasMatrix.width = window.innerWidth;
         canvasMatrix.height = window.innerHeight;
 
-        // 2. Caracteres estilo Matrix (Números)
         const caracteres = '0123456789';
         const fontSize = 16;
         const columnas = canvasMatrix.width / fontSize;
 
-        // Array para rastrear la coordenada Y de cada columna
         const gotas = [];
         for (let x = 0; x < columnas; x++) {
             gotas[x] = 1;
         }
 
-        // 3. Función de dibujo repetitivo
         const dibujarMatrix = () => {
-            // Fondo negro semitransparente para el efecto de rastro
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvasMatrix.width, canvasMatrix.height);
 
-            ctx.fillStyle = '#0F0'; // Verde Neón brillante
+            ctx.fillStyle = '#0F0'; 
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < gotas.length; i++) {
                 const texto = caracteres.charAt(Math.floor(Math.random() * caracteres.length));
                 ctx.fillText(texto, i * fontSize, gotas[i] * fontSize);
 
-                // Devolver la gota al principio de forma aleatoria si sale de la pantalla
                 if (gotas[i] * fontSize > canvasMatrix.height && Math.random() > 0.975) {
                     gotas[i] = 0;
                 }
@@ -625,27 +592,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        const intervaloMatrix = setInterval(dibujarMatrix, 33); // Aprox 30 fps
+        const intervaloMatrix = setInterval(dibujarMatrix, 33); 
 
-        // 4. Mecanismo para salir de Matrix
         const salirMatrix = () => {
             clearInterval(intervaloMatrix);
             canvasMatrix.remove();
-            // Aseguramos que la respuesta vaya a la terminal
-            const tb = document.getElementById('terminal-body');
-            if (tb) {
-                const p = document.createElement('p');
-                p.className = 'terminal-output verde';
-                p.innerHTML = idiomaActual === 'es' ? "Sistema restaurado. Bienvenido al mundo real." : "System restored. Welcome to the real world.";
-                tb.appendChild(p);
-                tb.scrollTop = tb.scrollHeight;
-            }
+            imprimirEnTerminal(idiomaActual === 'es' ? "Sistema restaurado. Bienvenido al mundo real." : "System restored. Welcome to the real world.", true);
         };
 
-        // Salir al hacer clic en la pantalla
         canvasMatrix.addEventListener('click', salirMatrix);
         
-        // Salir al pulsar Escape
         document.addEventListener('keydown', function eventoTecla(e) {
             if (e.key === 'Escape' || e.key === 'Enter') {
                 salirMatrix();
@@ -653,7 +609,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Reajustar tamaño si cambian la ventana
         window.addEventListener('resize', () => {
             if (document.getElementById('matrix-canvas')) {
                 canvasMatrix.width = window.innerWidth;
@@ -742,16 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(btnLang) btnLang.addEventListener('click', () => setTimeout(checkLang, 10));
     }
 
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            // Usamos './sw.js' para asegurar que el scope es la carpeta actual
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('SW registrado con éxito en el scope:', reg.scope))
-                .catch(err => console.log('Fallo al registrar SW:', err));
-        });
-    }
-
-    // --- 12. REGISTRO DEL SERVICE WORKER (PWA) ---
+    // --- 11. REGISTRO DEL SERVICE WORKER (PWA) ---
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
