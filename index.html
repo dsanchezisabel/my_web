@@ -71,7 +71,7 @@
     <main>
         <section id="inicio" class="hero">
             <canvas id="canvas-nodos"></canvas>
-            <div class="contenido-hero oculto">
+            <div class="contenido-hero">
                 <img src="img/foto_orla.webp" alt="David Sánchez Orla" class="foto-hero">
                 <h1><span class="resaltado" data-i18n="hero_titulo">Mi blog personal</span></h1>
                 <p data-i18n="hero_subtitulo">| Ingeniero en Tecnologías de la Telecomunicación |</p>
@@ -111,14 +111,14 @@
                         <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
                     </div>
                     <div class="terminal-title">david@telecom:~</div>
-                    <button id="btn-copiar" style="background:none; border:none; color:#888; cursor:pointer; position:absolute; right:15px; font-size: 0.9rem;">
+                    <button id="btn-copiar" aria-label="Copiar correo al portapapeles" style="background:none; border:none; color:#888; cursor:pointer; position:absolute; right:15px; font-size: 0.9rem;">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
                 <div class="terminal-body" id="terminal-body"></div>
                 <div class="terminal-input-area">
                     <span class="terminal-prompt">david@telecom:~$</span>
-                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+                    <input type="text" id="terminal-input" aria-label="Entrada de comandos de la terminal" autocomplete="off" spellcheck="false">
                 </div>
             </div>
         </section>
@@ -201,4 +201,5 @@
 </body>
 
 </html>
+
 
