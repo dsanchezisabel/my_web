@@ -179,11 +179,12 @@ const traducciones = {
         "pol_privacidad": "Privacy Policy",
         "pol_cookies": "Cookies Policy",
         "pol_aviso": "Legal Notice",
-        "pol_proximamente": "Coming soon",
+        "pol_proximamente": "Coming soon ...",
         "pol_texto": "We are working to offer you the best experience. This section will be available very soon.",
 
         // BOTÓN GENÉRICO
         "btn_volver": "Back to Home"
     }
 };
+
 
