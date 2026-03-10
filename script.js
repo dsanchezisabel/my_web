@@ -697,12 +697,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if(btnLang) btnLang.addEventListener('click', () => setTimeout(checkLang, 10));
     }
 
-    // --- 11. REGISTRO DEL SERVICE WORKER (PWA) ---
+    // --- 11. PURGA DEL SERVICE WORKER (FIX PARA EL CSS ROTO) ---
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('SW registrado con éxito en el scope:', reg.scope))
-                .catch(err => console.log('Fallo al registrar SW:', err));
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                // Esto "mata" al Service Worker rebelde
+                registration.unregister();
+                console.log('Service Worker desinstalado con éxito.');
+            }
         });
+        
+        // Esto vacía la bóveda donde se guardó el CSS roto
+        if (window.caches) {
+            caches.keys().then(keys => {
+                keys.forEach(key => caches.delete(key));
+                console.log('Caché antigua eliminada.');
+            });
+        }
     }
 });
