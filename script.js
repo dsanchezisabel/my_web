@@ -380,10 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     imprimirEnTerminal("--- david-portfolio.local ping statistics ---", true);
                     imprimirEnTerminal("1 packets transmitted, 1 packets received, 0.0% packet loss", true);
                     break;
-                case 'sudo rm -rf /':
+                case 'matrix':
                     imprimirEnTerminal(idiomaActual === 'es' ? "Despertando, Neo..." : "Wake up, Neo...", true);
                     setTimeout(iniciarMatrix, 1000);
                     break;
+                case 'sudo rm -rf /':
                 case 'sudo rm -rf /*':
                     const lang = idiomaActual; 
                     imprimirEnTerminal(lang === 'es' ? "⚠️ ALERTA: Iniciando borrado crítico del sistema de archivos..." : "⚠️ WARNING: Initiating critical file system wipe...", true);
@@ -715,6 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
