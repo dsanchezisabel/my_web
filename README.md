@@ -14,7 +14,7 @@ Hola 👋, soy **David Sánchez Isabel**, estudiante de Ingeniería en Tecnolog�
 
 Este proyecto no es una simple plantilla web, es una aplicación desarrollada con enfoque en el rendimiento, la accesibilidad y la experiencia de usuario:
 
-* 💻 **Terminal Interactiva:** Un emulador de terminal integrado con comandos reales (`help`, `whoami`, `skills`) y algunos *Easter Eggs* ocultos (`sudo rm -rf /`).
+* 💻 **Terminal Interactiva:** Un emulador de terminal integrado con comandos reales (`help`, `whoami`, `skills`) y algunos *Easter Eggs* ocultos (`sudo rm -rf /` o `matrix`).
 * ⚡ **Rendimiento Extremo (Lighthouse):** Arquitectura optimizada para obtener calificaciones de élite en Google Lighthouse (Triple 100 en Accesibilidad, SEO y Best Practices, y +90 en Performance).
 * 🌐 **PWA (Progressive Web App):** Funciona sin conexión (Offline) gracias a la implementación de un *Service Worker* personalizado y manifiesto web.
 * 🌍 **i18n (Internacionalización):** Sistema de cambio de idioma nativo (Español/Inglés) sin recarga de página manejado mediante JSON.
@@ -55,8 +55,10 @@ Si visitas la web, prueba a escribir estos comandos en la terminal:
 * `help` - Muestra la lista de comandos disponibles.
 * `whoami` - Imprime mi perfil.
 * `skills` - Muestra mi stack tecnológico.
-* `sudo rm -rf /*` - ⚠️ *Inicia el protocolo de emergencia...*
-* `sudo rm -rf /` - 💊 *Despierta, Neo...*
+* `clear` - Limpia la pantalla.
+* `sudo rm -rf /*` o `sudo rm -rf /` - ⚠️ *Inicia el protocolo de emergencia...*
+* `matrix` - 💊 *Despierta, Neo...*
+* `ping`
 
 ---
 
