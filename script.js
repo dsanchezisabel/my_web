@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 9. EFECTO NODOS (OPTIMIZADO PARA RENDIMIENTO) ---
+    // --- 9. EFECTO NODOS ---
     const canvas = document.getElementById('canvas-nodos');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -267,8 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         function initParticles() {
             particlesArray = [];
-            // FIX: Limitamos a 15 partículas en móvil y 40 en PC. ¡Rendimiento x100!
-            let np = window.innerWidth < 768 ? 15 : 40;
+            let np = (canvas.height * canvas.width) / 9000;
             for (let i = 0; i < np; i++) {
                 let size = (Math.random() * 2) + 1;
                 let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -290,12 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         function animate() { requestAnimationFrame(animate); ctx.clearRect(0, 0, innerWidth, innerHeight); particlesArray.forEach(p => p.update()); connect(); }
-        
-        // FIX: Esperamos 1 segundo antes de arrancar la animación para no bloquear la carga inicial
-        setTimeout(() => {
-            initParticles(); 
-            animate();
-        }, 1000);
+        initParticles(); animate();
     }
 
     // --- 10. LÓGICA CORE DE LA TERMINAL INTERACTIVA ---
@@ -420,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!esRespuesta) {
                 p.innerHTML = texto;
-                terminalBody.scrollTop = terminalBody.scrollHeight;
+                requestAnimationFrame(() => terminalBody.scrollTop = terminalBody.scrollHeight);
                 return;
             }
 
@@ -430,19 +424,18 @@ document.addEventListener('DOMContentLoaded', () => {
             function typeWriter() {
                 if (i < texto.length) {
                     if (texto.charAt(i) === '<') isTag = true;
-                    
                     p.innerHTML = texto.substring(0, i + 1);
-
                     if (texto.charAt(i) === '>') isTag = false;
-                    
                     i++;
-                    terminalBody.scrollTop = terminalBody.scrollHeight;
                     
                     if (isTag) {
                         typeWriter(); 
                     } else {
                         setTimeout(typeWriter, 10); 
                     }
+                } else {
+                    // FIX: Solo movemos el scroll cuando termina toda la frase, no letra por letra.
+                    requestAnimationFrame(() => terminalBody.scrollTop = terminalBody.scrollHeight);
                 }
             }
             typeWriter();
@@ -722,4 +715,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
