@@ -86,7 +86,7 @@ const traducciones = {
         "pol_privacidad": "Política de Privacidad",
         "pol_cookies": "Política de Cookies",
         "pol_aviso": "Aviso Legal",
-        "pol_proximamente": "Próximamente",
+        "pol_proximamente": "Próximamente ...",
         "pol_texto": "Estamos trabajando para ofrecerte la mejor experiencia. Esta sección estará disponible muy pronto.",
         
         // BOTÓN GENÉRICO
@@ -186,5 +186,6 @@ const traducciones = {
         "btn_volver": "Back to Home"
     }
 };
+
 
 
