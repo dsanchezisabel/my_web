@@ -177,10 +177,15 @@
                 <p style="margin-bottom: 20px;" data-i18n="txt_contacto">¿Tienes una idea o una oferta? Mándame un mensaje directo.</p>
                 
                 <form action="https://formspree.io/f/mpqyqkev" method="POST" class="formulario-contacto">
-                    <input type="text" name="nombre" placeholder="Tu Nombre" id="input-nombre" required>
-                    <input type="email" name="email" placeholder="Tu Correo" id="input-correo" required>
+                    <input type="text" name="nombre" placeholder="Tu Nombre" id="input-nombre" autocomplete="name" required>
+                    
+                    <input type="email" name="email" placeholder="Tu Correo" id="input-correo" autocomplete="email" required>
+                    
                     <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." id="input-mensaje" rows="4" required></textarea>
-                    <button type="submit" class="boton" data-i18n="form_btn"><i class="fas fa-paper-plane"></i> Enviar Mensaje</button>
+                    
+                    <button type="submit" class="boton" data-i18n="form_btn">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
                 </form>
             </div>
         </section>
@@ -194,4 +199,5 @@
     <script src="lang.js" defer></script>
     <script src="script.js" defer></script>
 </body>
+
 </html>
