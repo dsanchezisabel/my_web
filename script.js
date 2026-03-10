@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <ul class="enlaces-legales">
                 <li><a href="politica.html" data-i18n="footer_legal">Política de la web</a></li>
             </ul>
-            <p>&copy; ${anioActual} David Sánchez Isabel. <span data-i18n="footer_derechos">Todos los derechos reservados.</span></p>
+            <p>Copyright &copy; ${anioActual} David Sánchez Isabel. <span data-i18n="footer_derechos">Todos los derechos reservados.</span></p>
         `;
     }
 
@@ -716,6 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
