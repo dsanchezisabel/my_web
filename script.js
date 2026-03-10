@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 9. EFECTO NODOS ---
+    // --- 9. EFECTO NODOS (OPTIMIZADO PARA RENDIMIENTO) ---
     const canvas = document.getElementById('canvas-nodos');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -267,7 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         function initParticles() {
             particlesArray = [];
-            let np = (canvas.height * canvas.width) / 9000;
+            // FIX: Limitamos a 15 partículas en móvil y 40 en PC. ¡Rendimiento x100!
+            let np = window.innerWidth < 768 ? 15 : 40;
             for (let i = 0; i < np; i++) {
                 let size = (Math.random() * 2) + 1;
                 let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -289,7 +290,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         function animate() { requestAnimationFrame(animate); ctx.clearRect(0, 0, innerWidth, innerHeight); particlesArray.forEach(p => p.update()); connect(); }
-        initParticles(); animate();
+        
+        // FIX: Esperamos 1 segundo antes de arrancar la animación para no bloquear la carga inicial
+        setTimeout(() => {
+            initParticles(); 
+            animate();
+        }, 1000);
     }
 
     // --- 10. LÓGICA CORE DE LA TERMINAL INTERACTIVA ---
@@ -716,3 +722,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
