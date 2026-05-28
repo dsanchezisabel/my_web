@@ -120,3 +120,31 @@ th { background-color: #edf2f7; font-weight: 600; color: var(--text-muted); font
 .btn-gigante:hover {
     transform: scale(1.02);
 }
+
+/* ==========================================
+   CENTRADO ABSOLUTO DE LA PANTALLA DE LOGIN
+   ========================================== */
+
+/* Le damos al body del login una altura completa */
+#page-login {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Para que el header quede arriba y el contenido abajo */
+}
+
+/* Este contenedor ocupará todo el espacio restante de la pantalla */
+.login-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Ajustamos la caja de login para que no se estire demasiado */
+.login-box {
+    width: 100%;
+    max-width: 400px; /* Ancho máximo ideal para el recuadro */
+    margin: 0 !important; /* Eliminamos márgenes antiguos que puedan moverla */
+}
