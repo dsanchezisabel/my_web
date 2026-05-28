@@ -25,14 +25,14 @@
     },
     {
         "id": 3,
-        "titulo_es": "Simulación BGP/OSPF",
-        "titulo_en": "BGP/OSPF Simulation",
-        "descripcion_es": "Configuración de enrutamiento dinámico y topologías de red en Cisco Packet Tracer.",
-        "descripcion_en": "Dynamic routing configuration and network topologies in Cisco Packet Tracer.",
-        "categoria": "redes",
-        "enlace": "#",
-        "textoEnlace_es": "Ver repositorio &rarr;",
-        "textoEnlace_en": "View repository &rarr;",
+        "titulo_es": "Página Amigo Invisible",
+        "titulo_en": "Invisible Friend WebPage",
+        "descripcion_es": "Página web para crear y gestionar regalos del amigo invisible.",
+        "descripcion_en": "WebPage for creating and managing invisible friend's presents.",
+        "categoria": "software",
+        "enlace": "/amigo_invisible/index.html",
+        "textoEnlace_es": "Ver página &rarr;",
+        "textoEnlace_en": "View web &rarr;",
         "destacado": false
     }
 ]
