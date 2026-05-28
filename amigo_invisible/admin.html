@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Amigo Invisible</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body id="page-admin" style="display: none;">
+    <div class="container">
+        
+        <div class="panel panel-header">
+            <h2>Panel de Administración</h2>
+            <button id="btn-logout" class="btn btn-secondary btn-small">Cerrar Sesión</button>
+        </div>
+
+        <div id="alerta-sistema" class="alert oculto"></div>
+        
+        <div class="dashboard-grid">
+            <div class="panel">
+                <h3>Añadir Participante</h3>
+                <form id="form-add-user" class="mt-1">
+                    <div class="form-group">
+                        <input type="text" id="add-nombre" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="add-email" placeholder="Correo electrónico" required>
+                    </div>
+                    <!-- NUEVO CAMPO DE EXCEPCIÓN -->
+                    <div class="form-group">
+                        <input type="email" id="add-excepcion" placeholder="No regala a... (Email opcional)">
+                        <small style="color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: 0.3rem;">Opcional: Pon el correo del otro al que no puede regalar.</small>
+                    </div>
+                    <button type="submit" class="btn btn-success">Añadir a la lista</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Regenerar Contraseña</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Genera una nueva si alguien perdió el acceso.</p>
+                <form id="form-regenerar-pwd">
+                    <div class="form-group">
+                        <input type="email" id="email-regenerar" placeholder="Correo del participante" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Generar Nueva Contraseña</button>
+                </form>
+
+                <div id="alerta-pwd-temporal" class="alert alert-warning text-center oculto mt-1" style="padding: 1rem;">
+                    <h4 style="margin-top: 0; margin-bottom: 0.5rem; color: #b7791f;">¡Contraseña Creada!</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 1rem; color: #744210;">Se ocultará en <span id="contador">10</span> seg.</p>
+                    <div id="pwd-generada" class="password-box" style="margin: 0; padding: 0.75rem;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="panel">
+                <h3>Seguridad Admin</h3>
+                <form id="form-change-pwd" class="mt-1">
+                    <div class="form-group">
+                        <input type="password" id="new-pwd" placeholder="Nueva contraseña admin" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirm-pwd" placeholder="Repite la contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Cambiar Contraseña</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Resultados y Reportes</h3>
+                <p id="msg-post-sorteo-pendiente" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">
+                    Debes realizar el sorteo primero para poder descargar los resultados.
+                </p>
+
+                <div id="caja-post-sorteo" class="oculto">
+                    <div class="grupo-botones-flex mt-1">
+                        <button id="btn-descargar-txt" class="btn btn-secondary">Descargar TXT</button>
+                        <button id="btn-toggle-email" class="btn btn-azul">Enviar a Responsable ▼</button>
+                    </div>
+                    
+                    <div id="caja-email-responsable" class="oculto caja-desplegable">
+                        <form id="form-enviar-txt" class="formulario-flex">
+                            <input type="email" id="email-responsable" placeholder="Correo del responsable..." required>
+                            <button type="submit" class="btn btn-success">Enviar Documento</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin: 3rem 0; text-align: center;">
+            <button id="btn-sorteo" class="btn btn-primary btn-gigante">
+                🎁 ¡Realizar Sorteo Aleatorio!
+            </button>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Asegúrate de que todos están en la lista antes de pulsar.</p>
+        </div>
+
+        <div class="panel">
+            <h3>Lista de Participantes</h3>
+            <div class="table-container mt-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Excepción</th> <!-- Nueva columna -->
+                            <th>Estado de los Datos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-usuarios">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; margin-bottom: 2rem; text-align: center;">
+            <form id="form-reset">
+                <button type="submit" class="btn btn-danger" style="max-width: 300px; margin: 0 auto; background-color: #9b2c2c;">
+                    ⚠️ Borrar Todo el Sorteo
+                </button>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Esta acción eliminará a los participantes y vaciará el sistema.</p>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo Amigo Invisible</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script src="script.js" defer></script>
+</head>
+<body id="page-login">
+    <div class="container">
+        <div class="panel login-box text-center">
+            <h1 style="color: var(--primary); margin-bottom: 0.5rem;">🎁 Amigo Invisible</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Acceso al sistema</p>
+            
+            <div id="mensaje-error" class="alert alert-error oculto"></div>
+
+            <form id="form-login">
+                <div class="form-group">
+                    <input type="password" id="login-password" placeholder="Introduce la contraseña..." required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

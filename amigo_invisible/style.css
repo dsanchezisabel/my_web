@@ -1,0 +1,122 @@
+/* Pega aquí exactamente todo el CSS del diseño anterior que te di */
+/* (Para no saturar la respuesta, el CSS es 100% idéntico al del dashboard anterior) */
+
+:root { --primary: #c53030; --primary-hover: #9b2c2c; --bg-color: #f7fafc; --card-bg: #ffffff; --text-main: #2d3748; --text-muted: #718096; --border: #e2e8f0; --success: #38a169; --danger: #e53e3e; --warning: #dd6b20; --radius: 12px; }
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+    margin: 0; 
+    padding: 0;
+    /* Hemos quitado el display: flex problemático */
+}
+
+.container { 
+    width: 100%; 
+    max-width: 1100px; 
+    margin: 0 auto; /* ESTA ES LA CLAVE PARA CENTRAR EN PANTALLAS GRANDES */
+    padding: 2rem; 
+    box-sizing: border-box; 
+}
+.panel { background: var(--card-bg); border-radius: var(--radius); padding: 1.5rem 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--bg-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+input, select, textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; box-sizing: border-box; font-size: 1rem; font-family: inherit; }
+.btn { display: inline-block; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; text-align: center; width: 100%; box-sizing: border-box; }
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-secondary { background-color: #cbd5e0; color: #2d3748; }
+.btn-success { background-color: var(--success); color: white; }
+.btn-danger { background-color: var(--danger); color: white; }
+.btn-azul { background-color: #2b6cb0; color: white; }
+.btn-small { padding: 0.5rem 1rem; width: auto; }
+.alert { padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 500; }
+.alert-success { background-color: #f0fff4; color: #276749; border: 1px solid #c6f6d5; }
+.alert-error { background-color: #fff5f5; color: #c53030; border: 1px solid #fed7d7; }
+.alert-warning { background-color: #fffff0; color: #b7791f; border: 1px solid #fefcbf; }
+.password-box { background: #2d3748; color: white; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 1.5rem; text-align: center; letter-spacing: 2px; margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background-color: #edf2f7; font-weight: 600; color: var(--text-muted); font-size: 0.8rem; }
+.badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: bold; }
+.badge-ready { background-color: #c6f6d5; color: #22543d; }
+.badge-pending { background-color: #feebc8; color: #7b341e; }
+.text-center { text-align: center; } .mt-1 { margin-top: 1rem; } .login-box { max-width: 400px; margin: 4rem auto; }
+.reveal-box { background-color: #fff5f5; border: 2px dashed var(--primary); padding: 2rem; border-radius: var(--radius); }
+.reveal-name { font-size: 2.5rem; color: var(--primary); margin: 1rem 0; letter-spacing: 1px; }
+.oculto { display: none !important; }
+.caja-desplegable { padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem; }
+.grupo-botones-flex { display: flex; gap: 10px; flex-wrap: wrap; }
+.formulario-flex { display: flex; gap: 10px; }
+
+/* ==========================================
+   DISEÑO ADAPTATIVO (MÓVILES Y TABLETS)
+   ========================================== */
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .panel {
+        padding: 1.25rem 1rem;
+    }
+
+    /* Rompe la cuadrícula del panel para que los bloques se apilen verticalmente */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Centra y apila el título y el botón de cerrar sesión */
+    .panel-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    /* Adapta los botones desplegables para que ocupen todo el ancho en móviles */
+    .grupo-botones-flex, .formulario-flex {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .formulario-flex button {
+        width: 100%;
+    }
+
+    /* Permite el desplazamiento horizontal en la tabla para que no rompa la pantalla */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    th, td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* Reduce el tamaño de la letra del amigo invisible para que no se salga de los márgenes */
+    .reveal-name {
+        font-size: 1.8rem;
+    }
+    
+    .password-box {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+}
+
+.btn-gigante {
+    font-size: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(197, 48, 48, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+.btn-gigante:hover {
+    transform: scale(1.02);
+}

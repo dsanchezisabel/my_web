@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Amigo Invisible</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script src="script.js" defer></script>
+</head>
+<body id="page-participante" style="display: none;">
+    <div class="container">
+        
+        <div id="alerta-guardado" class="alert alert-success text-center oculto">
+            ¡Tus datos han sido guardados correctamente!
+        </div>
+
+        <div class="panel reveal-box text-center">
+            <p style="color: var(--text-muted); font-weight: bold; letter-spacing: 2px;">TE HA TOCADO REGALAR A:</p>
+            <h1 class="reveal-name"><strong id="nombre-receptor">CARGANDO...</strong></h1>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Hola, <span id="nombre-usuario"></span></h2>
+                <button id="btn-logout-part" class="btn btn-secondary btn-small">Salir</button>
+            </div>
+            
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Rellena la siguiente información.</p>
+            
+            <form id="form-datos-regalo">
+                <div class="form-group">
+                    <label>Link de la camiseta:</label>
+                    <input type="url" id="pref-link" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>Talla:</label>
+                    <input type="text" id="pref-talla" placeholder="Ej: L, M, 42...">
+                </div>
+                <div class="form-group">
+                    <label>Anotaciones(Nombre, Número, Año, Modelo o Edición, Parches, etc.):</label>
+                    <textarea id="pref-anotaciones" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Guardar Datos</button>
+            </form>
+
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+            <div id="zona-datos-guardados" class="oculto text-center">
+                <button id="btn-toggle-datos" class="btn btn-azul btn-small">👁️ Ver mis últimos datos guardados ▼</button>
+                
+                <div id="caja-datos-guardados" class="oculto" style="margin-top: 1rem; text-align: left; background: #edf2f7; padding: 1rem; border-radius: 8px;">
+                    <p style="margin-bottom: 0.5rem;"><strong>Link:</strong> <span id="res-link" style="color: var(--primary);"></span></p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Talla:</strong> <span id="res-talla"></span></p>
+                    <p style="margin-top: 1rem; margin-bottom: 0;"><strong>Anotaciones:</strong></p>
+                    <p id="res-anotaciones" style="white-space: pre-wrap; margin-top: 0.2rem; color: var(--text-muted);"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
