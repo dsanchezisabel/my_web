@@ -9,7 +9,8 @@
         "enlace": "#",
         "textoEnlace_es": "Próximamente",
         "textoEnlace_en": "Coming soon",
-        "destacado": true
+        "destacado": true,
+        "nueva_pestaña": false
     },
     {
         "id": 2,
@@ -21,7 +22,8 @@
         "enlace": "qr.html",
         "textoEnlace_es": "Ver más &rarr;",
         "textoEnlace_en": "View more &rarr;",
-        "destacado": true
+        "destacado": true,
+        "nueva_pestaña": false
     },
     {
         "id": 3,
@@ -30,9 +32,10 @@
         "descripcion_es": "Página web para crear y gestionar regalos del amigo invisible.",
         "descripcion_en": "WebPage for creating and managing invisible friend's presents.",
         "categoria": "software",
-        "enlace": "/amigo_invisible/index.html",
+        "enlace": "/my_web/amigo_invisible/index.html",
         "textoEnlace_es": "Ver página &rarr;",
         "textoEnlace_en": "View web &rarr;",
-        "destacado": false
+        "destacado": false,
+        "nueva_pestaña": true
     }
 ]
