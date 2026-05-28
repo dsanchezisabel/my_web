@@ -175,23 +175,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderizarProyectos(arrayProyectos, filtroActual, contenedor, lang) {
-        contenedor.innerHTML = ''; 
-        const filtrados = filtroActual === 'todos' ? arrayProyectos : arrayProyectos.filter(p => p.categoria === filtroActual);
-        if (filtrados.length === 0) return;
-        filtrados.forEach(p => {
-            const tit = p['titulo_' + lang] || 'Título no disponible';
-            const desc = p['descripcion_' + lang] || 'Descripción no disponible';
-            const textLnk = p['textoEnlace_' + lang] || 'Ver más';
+    contenedor.innerHTML = ''; 
+    const filtrados = filtroActual === 'todos' ? arrayProyectos : arrayProyectos.filter(p => p.categoria === filtroActual);
+    if (filtrados.length === 0) return;
+    
+    filtrados.forEach(p => {
+        const tit = p['titulo_' + lang] || 'Título no disponible';
+        const desc = p['descripcion_' + lang] || 'Descripción no disponible';
+        const textLnk = p['textoEnlace_' + lang] || 'Ver más';
 
-            contenedor.innerHTML += `
-                <div class="tarjeta-proyecto" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
-                    <h3>${tit}</h3>
-                    <p>${desc}</p>
-                    <a href="${p.enlace}" class="enlace-proyecto">${textLnk}</a>
-                </div>`;
-        });
-        if(typeof VanillaTilt !== 'undefined') VanillaTilt.init(contenedor.querySelectorAll(".tarjeta-proyecto"));
-    }
+        // NUEVO: Comprobamos si en el JSON le has puesto "nueva_pestana": true
+        const targetAttr = p.nueva_pestana ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+        contenedor.innerHTML += `
+            <div class="tarjeta-proyecto" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                <h3>${tit}</h3>
+                <p>${desc}</p>
+                <a href="${p.enlace}" class="enlace-proyecto" ${targetAttr}>${textLnk}</a>
+            </div>`;
+    });
+    
+    if(typeof VanillaTilt !== 'undefined') VanillaTilt.init(contenedor.querySelectorAll(".tarjeta-proyecto"));
+}
 
     // --- 7. FUNCIONES DE LA TERMINAL (Para el i18n) ---
     const terminalBody = document.getElementById('terminal-body');
