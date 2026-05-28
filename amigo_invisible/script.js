@@ -25,7 +25,7 @@ const EMAILJS_TXT_TEMPLATE_ID = "template_2t5i2xu";
 emailjs.init(EMAILJS_PUBLIC_KEY);
 
 // Tu web final en GitHub
-const URL_WEB = "https://tu-usuario.github.io/tu-repo/index.html";
+const URL_WEB = "https://dsanchezisabel.github.io/my_web/amigo-invisible/index.html";
 
 // ==========================================
 // 2. UTILIDADES GLOBALES
